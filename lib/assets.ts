@@ -1,0 +1,110 @@
+export type TradableAsset = {
+  id: string; // CoinGecko id
+  symbol: string;
+  name: string;
+  payoutRate: number; // % return on a winning trade
+  fallbackPrice: number;
+  brandColor: string; // used by the icon badge when no brand mark exists
+  tradable?: boolean; // stablecoins are listed but not tradable
+};
+
+export const ASSETS: TradableAsset[] = [
+  { id: "bitcoin", symbol: "BTC", name: "Bitcoin", payoutRate: 80, fallbackPrice: 64000, brandColor: "#f7931a" },
+  { id: "ethereum", symbol: "ETH", name: "Ethereum", payoutRate: 78, fallbackPrice: 3200, brandColor: "#627eea" },
+  { id: "tether", symbol: "USDT", name: "Tether USDt", payoutRate: 70, fallbackPrice: 1, brandColor: "#26a17b", tradable: false },
+  { id: "binancecoin", symbol: "BNB", name: "BNB", payoutRate: 75, fallbackPrice: 580, brandColor: "#f3ba2f" },
+  { id: "ripple", symbol: "XRP", name: "XRP", payoutRate: 82, fallbackPrice: 0.55, brandColor: "#23292f" },
+  { id: "solana", symbol: "SOL", name: "Solana", payoutRate: 85, fallbackPrice: 145, brandColor: "#14f195" },
+  { id: "usd-coin", symbol: "USDC", name: "USDC", payoutRate: 70, fallbackPrice: 1, brandColor: "#2775ca", tradable: false },
+  { id: "dogecoin", symbol: "DOGE", name: "Dogecoin", payoutRate: 88, fallbackPrice: 0.13, brandColor: "#c2a633" },
+  { id: "tron", symbol: "TRX", name: "TRON", payoutRate: 82, fallbackPrice: 0.16, brandColor: "#eb0029" },
+  { id: "cardano", symbol: "ADA", name: "Cardano", payoutRate: 82, fallbackPrice: 0.42, brandColor: "#0033ad" },
+  { id: "chainlink", symbol: "LINK", name: "Chainlink", payoutRate: 84, fallbackPrice: 14, brandColor: "#2a5ada" },
+  { id: "avalanche-2", symbol: "AVAX", name: "Avalanche", payoutRate: 85, fallbackPrice: 28, brandColor: "#e84142" },
+  { id: "the-open-network", symbol: "TON", name: "Toncoin", payoutRate: 84, fallbackPrice: 2.4, brandColor: "#0098ea" },
+  { id: "sui", symbol: "SUI", name: "Sui", payoutRate: 86, fallbackPrice: 1.9, brandColor: "#4da2ff" },
+  { id: "polkadot", symbol: "DOT", name: "Polkadot", payoutRate: 84, fallbackPrice: 6.2, brandColor: "#e6007a" },
+  { id: "litecoin", symbol: "LTC", name: "Litecoin", payoutRate: 80, fallbackPrice: 88, brandColor: "#345d9d" },
+  { id: "bitcoin-cash", symbol: "BCH", name: "Bitcoin Cash", payoutRate: 80, fallbackPrice: 420, brandColor: "#0ac18e" },
+  { id: "hedera-hashgraph", symbol: "HBAR", name: "Hedera", payoutRate: 85, fallbackPrice: 0.19, brandColor: "#222222" },
+  { id: "uniswap", symbol: "UNI", name: "Uniswap", payoutRate: 85, fallbackPrice: 6.4, brandColor: "#ff007a" },
+  { id: "aave", symbol: "AAVE", name: "Aave", payoutRate: 85, fallbackPrice: 121, brandColor: "#b6509e" },
+  { id: "near", symbol: "NEAR", name: "NEAR Protocol", payoutRate: 86, fallbackPrice: 2.3, brandColor: "#00c1de" },
+  { id: "aptos", symbol: "APT", name: "Aptos", payoutRate: 86, fallbackPrice: 4.1, brandColor: "#06b6d4" },
+  { id: "arbitrum", symbol: "ARB", name: "Arbitrum", payoutRate: 87, fallbackPrice: 0.15, brandColor: "#12aaff" },
+  { id: "filecoin", symbol: "FIL", name: "Filecoin", payoutRate: 86, fallbackPrice: 0.8, brandColor: "#0090ff" },
+  { id: "stellar", symbol: "XLM", name: "Stellar", payoutRate: 84, fallbackPrice: 0.3, brandColor: "#7d00ff" },
+  { id: "cosmos", symbol: "ATOM", name: "Cosmos", payoutRate: 85, fallbackPrice: 3.9, brandColor: "#2e3148" },
+  { id: "injective-protocol", symbol: "INJ", name: "Injective", payoutRate: 87, fallbackPrice: 5.4, brandColor: "#0f7bff" },
+  { id: "render-token", symbol: "RENDER", name: "Render", payoutRate: 87, fallbackPrice: 2.1, brandColor: "#ff4a3d" },
+  { id: "lido-dao", symbol: "LDO", name: "Lido DAO", payoutRate: 87, fallbackPrice: 0.33, brandColor: "#f69988" },
+  { id: "optimism", symbol: "OP", name: "Optimism", payoutRate: 87, fallbackPrice: 0.42, brandColor: "#ff0420" },
+];
+
+export const TRADABLE_ASSETS = ASSETS.filter((a) => a.tradable !== false);
+
+export const DURATIONS = [
+  { seconds: 30, label: "30s" },
+  { seconds: 60, label: "1m" },
+  { seconds: 300, label: "5m" },
+  { seconds: 900, label: "15m" },
+  { seconds: 1800, label: "30m" },
+  { seconds: 3600, label: "1h" },
+  { seconds: 86400, label: "24h" },
+];
+
+/** Position multipliers. A higher multiplier reaches take profit or stop loss on a smaller price move. */
+export const MULTIPLIERS = [1, 5, 10, 25, 50, 100, 200, 300];
+
+/** Preset automated trading bots for the Auto tab. Each bot trades its own top five pairs. */
+export const TRADING_BOTS = [
+  { id: "momentum", name: "Momentum Bot", description: "Short term entries on the five largest markets.", minConfidence: 82, durationSeconds: 60, multiplier: 50, tradeLimit: 5, pairs: ["BTC", "ETH", "SOL", "BNB", "XRP"] },
+  { id: "scalper", name: "Scalper Bot", description: "Fast thirty second entries on high turnover pairs.", minConfidence: 80, durationSeconds: 30, multiplier: 100, tradeLimit: 8, pairs: ["BTC", "SOL", "DOGE", "XRP", "TRX"] },
+  { id: "trend", name: "Trend Bot", description: "Five minute trades that follow the daily direction.", minConfidence: 84, durationSeconds: 300, multiplier: 25, tradeLimit: 5, pairs: ["ETH", "BNB", "ADA", "LINK", "AVAX"] },
+  { id: "swing", name: "Swing Bot", description: "Patient fifteen minute setups on established coins.", minConfidence: 86, durationSeconds: 900, multiplier: 10, tradeLimit: 5, pairs: ["BTC", "ETH", "DOT", "LTC", "BCH"] },
+  { id: "layerone", name: "Layer One Bot", description: "Rotates through the leading smart contract chains.", minConfidence: 83, durationSeconds: 300, multiplier: 25, tradeLimit: 6, pairs: ["SOL", "AVAX", "NEAR", "APT", "SUI"] },
+  { id: "defi", name: "DeFi Bot", description: "Trades the top decentralised finance tokens.", minConfidence: 82, durationSeconds: 300, multiplier: 25, tradeLimit: 6, pairs: ["UNI", "AAVE", "LDO", "LINK", "INJ"] },
+  { id: "meme", name: "Meme Bot", description: "Quick entries on the busiest retail favourites.", minConfidence: 80, durationSeconds: 60, multiplier: 100, tradeLimit: 8, pairs: ["DOGE", "TRX", "XLM", "HBAR", "ARB"] },
+  { id: "volatility", name: "Volatility Bot", description: "Targets the fastest moving mid cap markets.", minConfidence: 81, durationSeconds: 60, multiplier: 200, tradeLimit: 8, pairs: ["SUI", "INJ", "RENDER", "OP", "ARB"] },
+  { id: "bluechip", name: "Blue Chip Bot", description: "Concentrates on the most liquid major pairs.", minConfidence: 85, durationSeconds: 900, multiplier: 10, tradeLimit: 5, pairs: ["BTC", "ETH", "BNB", "SOL", "LTC"] },
+  { id: "payments", name: "Payments Bot", description: "Follows the leading transfer and settlement coins.", minConfidence: 83, durationSeconds: 300, multiplier: 25, tradeLimit: 6, pairs: ["XRP", "XLM", "HBAR", "LTC", "BCH"] },
+];
+
+export const DEPOSIT_METHODS = [
+  { id: "usdt-trc20", label: "USDT (TRC 20)", asset: "USDT" },
+  { id: "btc", label: "Bitcoin", asset: "BTC" },
+  { id: "eth", label: "Ethereum", asset: "ETH" },
+  { id: "card", label: "Card (simulated)", asset: "USD" },
+];
+
+export const DEMO_ADDRESSES: Record<string, string> = {
+  "usdt-trc20": "TDemoMagg9x4Kq7SimulatedAddressOnly",
+  btc: "bc1qdemomagg simulated address only",
+  eth: "0xDem0Magg000000000000SimulatedOnly",
+  card: "simulated card checkout",
+};
+
+export function assetBySymbol(symbol: string) {
+  return ASSETS.find((a) => a.symbol === symbol);
+}
+
+export function formatMoney(value: number, digits = 2) {
+  return value.toLocaleString("en-US", {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  });
+}
+
+export function formatPrice(value: number) {
+  if (value >= 100) return formatMoney(value, 2);
+  if (value >= 1) return formatMoney(value, 3);
+  return formatMoney(value, 5);
+}
+
+export function formatCompactUsd(value: number) {
+  if (!Number.isFinite(value) || value <= 0) return "Unavailable";
+  if (value >= 1_000_000_000_000) return `${(value / 1_000_000_000_000).toFixed(2)} T`;
+  if (value >= 1_000_000_000) return `${(value / 1_000_000_000).toFixed(2)} B`;
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(2)} M`;
+  return formatMoney(value, 0);
+}

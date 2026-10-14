@@ -1,0 +1,67 @@
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { tr } from "@/lib/i18n";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { CryptoCard } from "@/components/ui/asset-card";
+import { useMarkets } from "@/hooks/use-trading";
+import { MarketRankings } from "@/components/market-rankings";
+import { assetBySymbol } from "@/lib/assets";
+
+export const Route = createFileRoute("/_authenticated/markets")({
+  head: () => ({
+    meta: [
+      { title: "Markets | CryptoMagg" },
+      {
+        name: "description",
+        content: "Live crypto prices, 24h moves and payout rates for CryptoMagg simulated trades.",
+      },
+      { property: "og:title", content: "Markets | CryptoMagg" },
+      { property: "og:description", content: "Live crypto prices and simulated payout rates." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
+    ],
+  }),
+  component: Markets,
+});
+
+function Markets() {
+  const navigate = useNavigate();
+  const { data, isFetching } = useMarkets();
+  const [query, setQuery] = useState("");
+  const quotes = (data?.quotes ?? []).filter((q) =>
+    (q.symbol + q.name).toLowerCase().includes(query.toLowerCase()),
+  );
+
+  return (
+    <div className="space-y-5">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h1 className="text-2xl font-semibold">{tr("Markets")}</h1>
+          <p className="text-sm text-muted-foreground">
+            {isFetching ? "Refreshing live prices…" : "Live prices, refreshed automatically."}
+          </p>
+        </div>
+        <Input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder={tr("Search asset")}
+          className="w-full sm:w-64"
+        />
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        {quotes.filter((q) => assetBySymbol(q.symbol)?.tradable !== false).map((q) => (
+          <CryptoCard key={q.symbol} ticker={q.symbol} name={q.name} currentPrice={q.price} percentageChange={q.change24h} points={q.sparkline} payoutRate={q.payoutRate} onTrade={(ticker) => navigate({ to: "/trade", search: { symbol: ticker } })} />
+        ))}
+      </div>
+
+      <section className="space-y-3 pt-2">
+        <div>
+          <h2 className="text-xl font-semibold">{tr("Market rankings")}</h2>
+          <p className="text-sm text-muted-foreground">Top coins by market cap and volume, plus today's biggest movers.</p>
+        </div>
+        <MarketRankings quotes={data?.quotes ?? []} />
+      </section>
+    </div>
+  );
+}
