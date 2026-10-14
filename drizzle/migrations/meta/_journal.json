@@ -1,0 +1,216 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789508674033,
+      "tag": "0000_cryptomagg_demo_trading_schema",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789512739832,
+      "tag": "0001_add_live_usdt_account_mode",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789515615215,
+      "tag": "0002_add_trade_balance_audit",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789517048072,
+      "tag": "0003_add_demo_trade_tp_sl",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1789518578627,
+      "tag": "0004_add_scanner_demo_outcomes",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1789519135168,
+      "tag": "0005_add_live_pnl_demo_trade_close",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1789523161172,
+      "tag": "0006_set_demo_expiry_outcome_mix",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1789525290767,
+      "tag": "0007_vary_demo_win_probability",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1789526317311,
+      "tag": "0008_set_demo_outcome_target_95_percent",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1789526439700,
+      "tag": "0009_store_demo_tp_sl_dollar_amounts",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1789528910576,
+      "tag": "0010_scale_live_pnl_sensitivity",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1789530426536,
+      "tag": "0011_nonzero_demo_close_result",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1789530838004,
+      "tag": "0012_ratio_demo_close_result_to_stake",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1789531050745,
+      "tag": "0013_demo_profit_ratio_of_stake",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1789531746867,
+      "tag": "0014_widen_demo_tp_sl_percent_limits",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1789531882089,
+      "tag": "0015_clamp_demo_risk_levels_above_zero",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1789539144906,
+      "tag": "0016_real_account_funding_and_settlement",
+      "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1789657927560,
+      "tag": "0017_revoke_public_execute_on_money_functions",
+      "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1789696680928,
+      "tag": "0018_usdt_crypto_deposits",
+      "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1789743726850,
+      "tag": "0019_reliable_mpesa_withdrawal_settlement",
+      "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "7",
+      "when": 1789743865685,
+      "tag": "0020_align_mpesa_withdrawal_statuses",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1789770220215,
+      "tag": "0021_withdrawal_otp_codes",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1789807492909,
+      "tag": "0022_admin_roles_client_ids_kyc",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "7",
+      "when": 1789807524189,
+      "tag": "0023_kyc_storage_policies",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1789827722684,
+      "tag": "0024_kyc_two_sided_capture_and_crypto_methods",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1789838066658,
+      "tag": "0025_b2c_payout_tracking_and_block_flag",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1790001696816,
+      "tag": "0026_pin_honest_live_settlement",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "7",
+      "when": 1790026516768,
+      "tag": "0027_lock_down_money_tables_and_definer_functions",
+      "breakpoints": true
+    },
+    {
+      "idx": 28,
+      "version": "7",
+      "when": 1790029113614,
+      "tag": "0028_restrict_user_roles_writes_and_kyc_storage",
+      "breakpoints": true
+    },
+    {
+      "idx": 29,
+      "version": "7",
+      "when": 1790034579863,
+      "tag": "0029_crypto_withdrawals",
+      "breakpoints": true
+    }
+  ]
+}
